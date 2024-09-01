@@ -38,7 +38,7 @@ class TodoController extends Controller
      */
     public function store(TodoRequests $request)
     {
-        $data               = $request->only(array_keys($request->rules()));
+        $data = $request->only(array_keys($request->rules()));
 
         $request->user()->todos()->create($data);
 
@@ -77,7 +77,7 @@ class TodoController extends Controller
     public function update(TodoRequests $request, Todo $todo)
     {
         $data = $request->only(array_keys($request->rules()));
-        $data['status']     = false;
+        $data['status'] = false;
         $todo->fill($data);
 
         $todo->save();
