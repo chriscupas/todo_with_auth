@@ -5342,6 +5342,9 @@
                 }
             },
             "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
                 "psr-4": {
                     "Symfony\\Contracts\\Service\\": ""
                 },
