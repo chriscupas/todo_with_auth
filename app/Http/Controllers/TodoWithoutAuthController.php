@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\TodoRequests;
 use App\Todo;
 
-class TodoController extends Controller
+class TodoWithoutAuthController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = auth()->user()->todos()->latest()->paginate(20);
+        $todos = Todo::all()->paginate(20);
 
         return view('todos.index', compact('todos'));
     }
@@ -40,7 +40,7 @@ class TodoController extends Controller
     {
         $data = $request->only(array_keys($request->rules()));
 
-        $request->user()->todos()->create($data);
+        Todo::create($data);
 
         return redirect('todos');
     }
