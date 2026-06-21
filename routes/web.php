@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\TodoController;
+use App\Http\Controllers\WelcomeController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,12 +15,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth', 'web']], function () {
-    Route::resource('todos', 'TodoController');
+    Route::resource('todos', TodoController::class);
 });
